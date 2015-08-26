@@ -1,7 +1,6 @@
-Mac OS X 安装 Docker
-===
+# Mac OS X 安装 Docker
 
-> 注意：
+> **注意**：
 > 该 Docker 版本为了支持 Docker 机,于是不再支持 Boot2Docker 命令行。使用 Docker Toolbox 和其它 Docker 工具来安装 Docker 机。
 
 您可以利用 Docker Toolbox 来安装 Docker。Docker Toolbox 提供了以下工具：
@@ -20,8 +19,7 @@ Mac OS X 安装 Docker
 您 Mac 机的 OS X 版本必须大于等于 10.8 "Snow Leopard" 才可以安装 Docker Toolbox。
 
 ###在安装之前先来了解一些关键概念
-
-当我们在一台 Linux 主机上安装完 Docker 之后，我们的机器中就包含了本地主机和 Docker 主机。如果从网络层来划分，本地主机就代表你的电脑，而 Docker 主机就是运行 container 的那台机器。
+当 Docker 正在操作系统未 Linux 的机器上安装时，我们的机器中就包含了本地主机和 Docker 主机。如果从网络层来划分，本地主机就代表你的电脑，而 Docker 主机就是运行 container 的那台机器。
 
 在 Linux 机器上的一种典型安装 Docker 方法：Docker 客户端，Docker 后台程序和 container 会直接运行在您的机器上。这就意味着您可以使用标准的本地主机寻址（例如 `localhost:8000` 或者 `0.0.0.0:8376`）来为 Docker container 分配一个地址。
 
