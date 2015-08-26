@@ -13,7 +13,7 @@ Machine 可以让您在自己的机器上，在供应商提供的云主机上乃
 ## 理解 Docker Machine 的基本概念
 Docker Machine 允许您在自己系统中的虚拟机或在云供应商中的虚拟机中部署 Docker。Docker Machine 会在虚拟机上创建一个主机，您可以根据您的需求在主机上利用 Docker Engine 客户端构建 image，并创建 container。
 
-为了创建一台虚拟机，您需要提供带有您想使用的那个驱动器的 Docker Machine。驱动器决定了虚拟环境。例如，在本地 Linux，Mac，或 Windows 系统上的驱动器是典型的 Oracle Virtual Box。对于云供应商而言，Docker Machine 提供了例如 AWS, Microsoft Azure, Digital Ocean 乃至更多供应商的 driver。Docker Machine 参考中包含了完整的[被支持的驱动器列表](../machine/drivers.md)
+为了创建一台虚拟机，您需要给 Docker Machine 提供您想使用的那个驱动器的名称。驱动器决定了虚拟环境。例如，在本地 Linux，Mac，或 Windows 系统上的驱动器是典型的 Oracle Virtual Box。对于云供应商而言，Docker Machine 提供了例如 AWS, Microsoft Azure, Digital Ocean 乃至更多供应商的 driver。Docker Machine 参考中包含了完整的[被支持的驱动器列表](../machine/drivers.md)
 
 因为 Docker 是运行在 Linux 上的，Docker Machine 提供的每台虚拟机都依赖于一个基本的操作系统。为了方便起见，对于不同的 driver，都会有默认的基本操作系统。对于 Oracle Virtual Box 驱动器而言，这个基本的操作系统就是 `boot2docker.iso`。对于那些用于和云供应商连接的驱动器来说，基本的操作系统就是 12.04 或更高版本的 Ubuntu。当您创建了一个 Docker Machine 的时候，您就可以更改默认的基本操作系统。Docker Machine 参考包含了完整的[被支持的操作系统列表](machine/drivers/os-base.md)。
 
