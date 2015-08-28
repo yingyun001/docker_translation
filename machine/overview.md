@@ -15,13 +15,13 @@ Docker Machine 允许您在自己系统中的虚拟机或在云供应商中的�
 
 为了创建一台虚拟机，您需要给 Docker Machine 提供您想使用的那个驱动器的名称。驱动器决定了虚拟环境。例如，在本地 Linux，Mac，或 Windows 系统上的驱动器是典型的 Oracle Virtual Box。对于云供应商而言，Docker Machine 提供了例如 AWS, Microsoft Azure, Digital Ocean 乃至更多供应商的 driver。Docker Machine 参考中包含了完整的[被支持的驱动器列表](../machine/drivers.md)
 
-因为 Docker 是运行在 Linux 上的，Docker Machine 提供的每台虚拟机都依赖于一个基本的操作系统。为了方便起见，对于不同的 driver，都会有默认的基本操作系统。对于 Oracle Virtual Box 驱动器而言，这个基本的操作系统就是 `boot2docker.iso`。对于那些用于和云供应商连接的驱动器来说，基本的操作系统就是 12.04 或更高版本的 Ubuntu。当您创建了一个 Docker Machine 的时候，您就可以更改默认的基本操作系统。Docker Machine 参考包含了完整的[被支持的操作系统列表](machine/drivers/os-base.md)。
+因为 Docker 是运行在 Linux 上的，Docker Machine 提供的每台虚拟机都依赖于一个基本的操作系统。为了方便起见，对于不同的 driver，都会有默认的基本操作系统。对于 Oracle Virtual Box 驱动器而言，这个基本的操作系统就是 `boot2docker.iso`。对于那些用于和云供应商连接的驱动器来说，基本的操作系统就是 12.04 或更高版本的 Ubuntu。当您创建了一个 Docker Machine 的时候，您就可以更改默认的基本操作系统。Docker Machine 参考包含了完整的[被支持的操作系统列表](../machine/drivers/os-base.md)。
 
 对于您创建的每个 Docker Machine，Docker 主机地址就是 Linux 虚拟机的 IP 地址。该地址是由 `docker-machine create` 这个子命令创建的。您还可以使用 `docker-machine ls` 命令列出您创建的所有 Docker Machine。`docker-machine ip <machine-name>` 命令返回一个指定的主机的 IP 地址。
 
-在 Docker machine 上运行 Docker 命令之前，请您通过配置将本地命令行环境连接到 Docker Machine 中。`docker-machine env <machine-name> 子命令出输出下面您应该执行的配置命令。当您在 Docker host 上运行一个 container 的时候，container 的端口会映射到虚拟机的端口上。
+在 Docker machine 上运行 Docker 命令之前，请您通过配置将本地命令行环境连接到 Docker Machine 中。`docker-machine env <machine-name>` 子命令出输出下面您应该执行的配置命令。当您在 Docker host 上运行一个 container 的时候，container 的端口会映射到虚拟机的端口上。
 
-想要知道更多`docker-machine` 的子命令，请见：[Docker Machine 子命令参考](machine/subcommands.md)
+想要知道更多`docker-machine` 的子命令，请见：[Docker Machine 子命令参考](../machine/subcommands.md)
 
 ## 获取帮助
 Docker Machine 仍然处于起步阶段并还在蓬勃发展。如果您需要寻求帮助，或者想要和志趣相投的人一起为该项目做贡献或一起探讨问题，我们会提供您一些开放的用于交流的平台。

@@ -159,7 +159,7 @@ Docker 的特点之一是人们创建了各种各样的 Docker 镜像。而且�
 	$ sudo docker run -t -i ouruser/sinatra:v2 /bin/bash
 	root@78e82f680994:/#
 
-### 使用 `Dockerfile` 构建镜像
+### 利用 `Dockerfile` 构建镜像
 
 使用 `docker commit` 命令能够非常简单的扩展镜像。但是它有点麻烦，并且在一个团队中也不能够轻易的共享它的开发过程。为解决这个问题，我们使用一个新的命令 `docker build` ， 从零开始来创建一个新的镜像。
 

@@ -7,7 +7,7 @@
 
 * 用于运行 docker-machine 二进制文件的 `Docker Machine`
 * 用于运行 docker 二进行文件的 `Docker Engine`
-* 用于运行 docker-compose 二进行文件的 `Docker Compose (Mac 特有)`
+* 用于运行 docker-compose 二进行文件的 `Docker Compose`
 * Kitematic，Docker 的图形用户界面
 * 用于 Docker 命令行环且预先配置好的 shell
 * Oracle VM VirtualBox
