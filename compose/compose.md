@@ -128,11 +128,71 @@ redis:
 
 ### 利用 Compose 构建并运行您的应用程序
 现在，如果您执行 `docker-compose up`，Compose 会下载 Redis image，为您的代码构建出一个新的 image，并将其启动：
-```
 
 ```
+docker-compose up
+Pulling image redis...
+Building web...
+Starting composetest_redis_1...
+Starting composetest_web_1...
+redis_1 | [8] 02 Jan 18:43:35.576 # Server started, Redis version 2.8.3
+web_1   |  * Running on http://0.0.0.0:5000/
+web_1   |  * Restarting with stat
+```
+
+如果您正在使用 [Docker Machine]()，通过执行 `docker-machine ip MACHINE_VM` 会查询出当前 Docker Machine 的 IP 地址，您可以在浏览器中打开 `http://MACHINE_VM_IP:5000`。
+
+如果您在 Linux 操作系统上，而且没有在使用 Boot2Docker，web app 现在应该监听 Docker 主机的 5000 端口。如果 [http://0.0.0.0:5000](http://0.0.0.0:5000) 没有返回结果，您可以使用 localhost:5000。
+
+
+
+您会在浏览器看到：
+```
+Hello World! I have been seen 1 times.
+```
+
+刷新页面，数值就会增加。
+
+如果您想要在后台运行程序，您可以在 `docker-compose up` 的结尾处添加 `-d` 参数并使用 `docker-compose ps` 查看运行情况。
+
+```
+$ docker-compose up -d
+Starting composetest_redis_1...
+Starting composetest_web_1...
+$ docker-compose ps
+    Name                 Command            State       Ports
+-------------------------------------------------------------------
+composetest_redis_1   /usr/local/bin/run         Up
+composetest_web_1     /bin/sh -c python app.py   Up      5000->5000/tcp
+```
+
+使用 `docker-compose run` 命令，可以一次性的运行您定义的服务。例如，查看 `web` 服务的环境变量：
+
+```
+$ docker-compose run web env
+```
+
+通过 `docker-compose --help` 命令查看其它可用的命令。您还可以为 bash shell 和 zsh shell 安装 [命令补全](../compose/completion.md)，命令补全也可以给出一些可用的命令。如果您用 `docker-compose up -d` 命令来启动 Compose 的话，您可能想在启动成功后停止您的服务，那么请您执行下面这条指令：
+
+```
+$ docker-compose stop
+```
+
+现在，您已经了解了 Compose 是如何运行的。
+
+- 接下来您可以看 [Django](../compose/django.md)，[Rails](../compose/rails.md) 和 [Wordpress](../compose/wordpress.md) 的快速指南。
+- 您可以进一步了解 [命令](../compose/reference.md)，[配置文件](../compose/yml.md) 和 [环境变量](../compose/env.md) 的详细信息。
 
 ## 发行通知
 ### 1.2.0 版本（2015 年 4 月 7 日）
-## 获取帮助
+想了解该版本更多信息，请参见：[1.2.0 里程碑项目页面](https://github.com/docker/compose/wiki/1.2.0-Milestone-Project-Page)。这个版本除了修复了一些 bug 和进一步的求精以外，还添加了如下内容：
+- `extends` 关键字，它提供了通过共享一般的配置文件而能够扩展服务的功能。详情请见 [PR #1088](https://github.com/docker/compose/pull/1088)。
+- 可以与 Swarm 更好的整合到一起。Swarm 现在可以在同一个主机上调用相互依赖，详情请见：[PR #972](https://github.com/docker/compose/pull/972)。
 
+## 获取帮助
+Docker Compose 还处于孕育和蓬勃发展的阶段。如果您需要帮助，想要向该项目贡献，或只是想和志同道合的人讨论这个项目，我们为您准备了很多交流的频道。
+
+- 想要提交 bug，或文件特性需求，请您使用 [issue tracker on Github](https://github.com/docker/compose/issues)。
+- 想和大家即时交流，请您加入到 IRC 的 `#docker-compose` 频道中来。
+- 想要贡献代码或者更新文档：请提交一个 [pull request](https://github.com/docker/compose/pulls)。
+- 想要更多信息和资源，请您参见：[项目的获取帮助页面](https://docs.docker.com/project/get-help/)。
