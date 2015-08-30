@@ -1,0 +1,13 @@
+{
+    "name": "docker",
+    "version": "0.3.4",
+    "description": "docker，docker",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yingyun001/docker_translation.git"
+    },
+    "author": "yingyun001",
+    "dependencies": {
+        "gitbook-plugin-autocover": "0.0.5"
+    }
+}
