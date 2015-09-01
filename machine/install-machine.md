@@ -1,5 +1,4 @@
-安装 Docker Machine
-===
+# 安装 Docker Machine
 
 Docker Machine 支持 Windows ,OS X ,和 Linux，并且是以独立的二进制文件的形式安装的。用于各平台架构的二进制文件可从 [Github Release](https://github.com/docker/machine/releases/) 获得。
 
@@ -24,6 +23,6 @@ docker-machine version 0.4.0 (9d0dc7a)
 ```
 
 ## 还需要做什么
-- [Docker Machine 概述](../machine/overview.md)
+- [Docker Machine 概述](../machine/machine.md)
 - [Docker Machine 参考驱动](../machine/drivers.md)
 - [Docker Machine 参考子命令](../machine/reference.md)

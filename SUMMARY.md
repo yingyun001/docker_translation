@@ -56,7 +56,7 @@
    * [Docker 中已弃用的特性](#)
 	* [Understand the architecture](#) 
 	* [Provision & set up Docker hosts](#)
-      * [Docker Machine 的概述](machine/overview.md)
+      * [Docker Machine 的概述](machine/machine.md)
       * [开启 Docker Machine 和本地虚拟机之旅](machine/get-started.md)
       * [使用云供应商提供的 Docker Machine](machine/get-started-cloud.md)
       * [从 Boot2Docker 迁移到 Docker Machine](machine/migrate.md)

@@ -1,7 +1,7 @@
 # Docker Machine
 
 > **注意**:
-> Machine 目前还处于测试阶段，所以可能会有些许变化。我们现在不建议您在产品中使用它。
+> Machine 目前还处于测试阶段，所以可能会有些许变化。我们现在不建议您在生产环境中使用它。
 
 Machine 可以让您在自己的机器上，在供应商提供的云主机上乃至在您的数据中心中创建 Docker 主机。该 Docker 主机会被自动创建，并在上面安装 Docker，然后通过配置 `Docker` 客户端使其能够与 Docker 主机进行通信。Docker 主机和配置好的 Docker 客户端组合在一起就是我们所说的 "Machine"。
 
@@ -11,7 +11,7 @@ Machine 可以让您在自己的机器上，在供应商提供的云主机上乃
 * 为了和主机进行通信而配置 Docker 客户端。
 
 ## 理解 Docker Machine 的基本概念
-Docker Machine 允许您在自己系统中的虚拟机或在云供应商中的虚拟机中部署 Docker。Docker Machine 会在虚拟机上创建一个主机，您可以根据您的需求在主机上利用 Docker Engine 客户端构建 image，并创建 container。
+Docker Machine 允许您在自己系统中的虚拟机或在云供应商中的虚拟机中部署 Docker。Docker Machine 会在虚拟机上创建一个主机，您可以根据您的需求利用 Docker Engine 客户端在主机上构建 image，并创建 container。
 
 为了创建一台虚拟机，您需要给 Docker Machine 提供您想使用的那个驱动器的名称。驱动器决定了虚拟环境。例如，在本地 Linux，Mac，或 Windows 系统上的驱动器是典型的 Oracle Virtual Box。对于云供应商而言，Docker Machine 提供了例如 AWS, Microsoft Azure, Digital Ocean 乃至更多供应商的 driver。Docker Machine 参考中包含了完整的[被支持的驱动器列表](../machine/drivers.md)
 
