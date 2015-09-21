@@ -26,7 +26,7 @@
    * [Kitematic](kitematic/)
    * [Docker Machine](machine/install-machine.md)
    * [Docker Compose](compose/install.md)
-   * [Docker Swarm](installation/install-w-machine.md)
+   * [Docker Swarm](swarm/install-w-machine.md)
 * [Docker 基本原理](#)
 	* [The Docker user guide](userguide/userguide.md) 
 	* [Work with Docker Images](#)

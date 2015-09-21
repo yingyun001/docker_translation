@@ -36,38 +36,35 @@ This script adds the `docker.repo` repository and installs Docker.
 ```
 $ sudo service docker start
 ```
-5. 通过在一个 container 中运行一个测试 image 来验证 `docker` 是否被安装。
+5. 通过在一个 container 中运行一个 image 来验证 `docker` 是否被安装。
 
-```
-$ sudo docker run hello-world
-Unable to find image 'hello-world:latest' locally
-latest: Pulling from hello-world
-a8219747be10: Pull complete 
-91c95931e552: Already exists 
-hello-world:latest: The image you are pulling has been verified. Important: image verification is a tech preview feature and should not be relied on to provide security.
-Digest: sha256:aa03e5d0d5553b4c3473e89c8619cf79df368babd1.7.1cf5daeb82aab55838d
-Status: Downloaded newer image for hello-world:latest
-Hello from Docker.
-This message shows that your installation appears to be working correctly.
+   ```
+   $ sudo docker run hello-world
+   Unable to find image 'hello-world:latest' locally
+   latest: Pulling from hello-world
+   a8219747be10: Pull complete 
+   91c95931e552: Already exists 
+   hello-world:latest: The image you are pulling has been verified. Important: image verification is a tech preview feature and should not be relied on to provide security.
+   Digest: sha256:aa03e5d0d5553b4c3473e89c8619cf79df368babd1.7.1cf5daeb82aab55838d
+   Status: Downloaded newer image for hello-world:latest
+   Hello from Docker.
+   This message shows that your installation appears to be working correctly.
 
+   To generate this message, Docker took the following steps:
+    1. The Docker client contacted the Docker daemon.
+    2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+           (Assuming it was not already locally available.)
+    3. The Docker daemon created a new container from that image which runs the
+           executable that produces the output you are currently reading.
+    4. The Docker daemon streamed that output to the Docker client, which sent it
+           to your terminal.
 
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-        (Assuming it was not already locally available.)
- 3. The Docker daemon created a new container from that image which runs the
-        executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-        to your terminal.
+   To try something more ambitious, you can run an Ubuntu container with:
+    $ docker run -it ubuntu bash
 
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-
-For more examples and ideas, visit:
- http://docs.docker.com/userguide/
-```
+   For more examples and ideas, visit:
+    http://docs.docker.com/userguide/
+   ```
 
 ### 不利用脚本安装
 1. 使用拥有 `sodu` 或者 `root` 特权的用户登录到您的 PC 上。
@@ -141,8 +138,8 @@ sudo usermod -aG docker your_username
 这个步骤的作用是确保您正在以正确的用户权限运行在当前环境中。
 4. 在不使用 `sudo` 的情况下运行 `docker`，验证 docker 是否可以正常运行。
 
-```
-$ docker run hello-world
+   ```
+   $ docker run hello-world
         Unable to find image 'hello-world:latest' locally
         latest: Pulling from hello-world
         a8219747be10: Pull complete 
@@ -153,7 +150,6 @@ $ docker run hello-world
         Hello from Docker.
         This message shows that your installation appears to be working correctly.
 
-
         To generate this message, Docker took the following steps:
          1. The Docker client contacted the Docker daemon.
          2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
@@ -163,20 +159,18 @@ $ docker run hello-world
          4. The Docker daemon streamed that output to the Docker client, which sent it
                 to your terminal.
 
-
         To try something more ambitious, you can run an Ubuntu container with:
          $ docker run -it ubuntu bash
 
-
         For more examples and ideas, visit:
          http://docs.docker.com/userguide/
-```
+   ```
 
 ##	系统启动时开启 docker 后台程序
 为确保在您启动系统的时候，Docker 就可以开启，请您执行如下操作：
-```
-$ sudo chkconfig docker on
-```
+   ```
+   $ sudo chkconfig docker on
+   ```
 如果您需要添加一个 HTTP 代理，请您为 Docker 运行文件添加一个不同的目录或分区，或者做一些其它的定制，请您阅读并学习如何：[customize your Systemd Docker daemon options](https://docs.docker.com/articles/systemd/)。
 
 ## 使用手动定义的网络运行 Docker
