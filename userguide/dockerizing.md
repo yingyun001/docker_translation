@@ -1,6 +1,6 @@
 # Docker 化应用程序之 “hello World‘
 
-'所以，Docker 这个东西究竟是什么呢？'
+*那么，Docker 这个东西究竟是什么呢？*
 
 Docker 允许您在容器内运行应用程序。要在容器内运行一个应用程序需要执行一条命令：`docker run`。
 
@@ -22,11 +22,11 @@ Hello world
 
 首先，我们指定了 `docker` 二进制可执行文件和我们想要执行的命令，即 `run`。`docker run` 命令会'运行容器'。
 
-接下来，我们指定了一个镜像: `ubuntu 14.04`。这是我们所运行的容器的来源。Docker 称其为镜像。在本例中，我们使用的是 `Ubuntu 14.04` 操作系统镜像。
+接下来，我们指定了一个镜像: `ubuntu 14.04`。这是运行该容器所基于的 image。Docker 称其为镜像。在本例中，我们使用的是 `Ubuntu 14.04` 操作系统镜像。
 
 当您指定了一个镜像之后，Docker 首先会从你的 Docker 本地主机上查看该镜像是否已经存在。如果没有的话，Docker 就会从镜像仓库 [Docker Hub](https://hub.docker.com/) 下载该公共镜像。
 
-接下来，我们告诉 Docker 要在新容器种执行什么命令：
+接下来，我们告诉了 Docker 要在新容器中执行什么命令：
 ```
 /bin/echo 'Hello world'
 ```
