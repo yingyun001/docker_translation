@@ -20,9 +20,9 @@ Hello world
 
 那么刚才发生了什么? 我们逐步来分析 `docker run` 命令做了哪些事情。
 
-首先，我们指定了 `docker` 二进制可执行文件和我们想要执行的命令，即 `run`。`docker run` 命令会'运行容器'。
+首先，我们指定了 `docker` 二进制可执行文件和我们想要执行的命令，即 `run`。`docker run` 命令就可以运行*容器*了。
 
-接下来，我们指定了一个镜像: `ubuntu 14.04`。这是运行该容器所基于的 image。Docker 称其为镜像。在本例中，我们使用的是 `Ubuntu 14.04` 操作系统镜像。
+接下来，我们指定了一个 image: `ubuntu 14.04`。这是运行该容器所基于的 image。Docker 称其为镜像。在本例中，我们使用的是 `Ubuntu 14.04` 操作系统镜像。
 
 当您指定了一个镜像之后，Docker 首先会从你的 Docker 本地主机上查看该镜像是否已经存在。如果没有的话，Docker 就会从镜像仓库 [Docker Hub](https://hub.docker.com/) 下载该公共镜像。
 
@@ -83,7 +83,7 @@ $ sudo docker run -d ubuntu:14.04 /bin/sh -c "while true; do echo hello world; s
 1e5535038e285177d5214659a068137486f96ee5c2e85a4ac52dc83f2ebe4147
 ```
 
-等等，“hello world” 的输出呢？让我们看看我们在这里运行了什么。这个命令看起来应该很熟悉。我们运行 `docker run` ，但是这次我们指定了参数 `-d`。参数 `-d` 告诉 docker 要以后台进程模式运行容器并将运行结果输出到后台。
+等等，“hello world” 的输出呢？让我们看看我们在这里运行了什么。这个命令看起来应该很熟悉。我们运行 `docker run` ，但是这次我们指定了参数 `-d`。参数 `-d` 告诉 docker 要以后台进程模式运行容器，并将运行结果输出到后台。
 
 我们指定了相同的镜像: `ubuntu:14.04`。
 
@@ -99,9 +99,9 @@ $ sudo docker run -d ubuntu:14.04 /bin/sh -c "while true; do echo hello world; s
 1e5535038e285177d5214659a068137486f96ee5c2e85a4ac52dc83f2ebe4147
 ```
 
-这个很长的字符串叫做*容器ID（container ID）*。它对于每一个容器来说都是唯一的，所以我们可以使用它。
+这个很长的字符串叫做*容器 ID（container ID）*。它对于每一个容器来说都是唯一的，所以我们可以使用它。
 
-> **注意**：容器 ID 是有点长并且不放变出力，稍后我们会看到一个短点的 ID 和更方便处理的命名方式。
+> **注意**：容器 ID 是有点长并且不方便处理，稍后我们会看到一个短点的 ID 和更方便处理的命名方式。
 
 我们可以使用该容器 ID，看看 "hello world" 进程究竟发生了什么。
 
@@ -127,9 +127,9 @@ hello world
 . . .
 ```
 
-`docker logs` 命令会查看容器中的内容并其以标准输出形式反乎：这个例子里输出的是 `hello world`。
+`docker logs` 命令会查看容器中的内容并其以标准输出形式返回：这个例子里输出的是 `hello world`。
 
-太棒了！我们的后台正续正在工作了，我们刚刚创建了自己的第一个 docker 化的应用程序。
+太棒了！我们的后台程序正在工作了，我们刚刚创建了自己的第一个 docker 化的应用程序。
 
 现在我们已经可以创建我们自己的容器了，我们可以对其进行整理并停止这个后台运行着的容器。我们使用 `docker stop` 命令来停止容器。
 ```
@@ -145,13 +145,10 @@ $ sudo docker ps
 CONTAINER ID  IMAGE         COMMAND               CREATED        STATUS       PORTS NAMES
 ```
 
-太好了.我们的容器已经停止了。
+太好了。我们的容器已经停止了。
 
 #下一步
 
-现在我们已经知道了原来 Docker 入门是如此简单，让我们学习如何做一些更高级的工作。
+现在我们已经知道了原来 Docker 入门是如此简单，让我们学习如何做一些更高级的内容。
 
 去阅读[使用容器](usingdocker.md)。
-
-
-

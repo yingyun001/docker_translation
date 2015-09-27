@@ -1,82 +1,69 @@
-欢迎来到docker用户指南
-===
+# 欢迎来到 Docker 的用户手册页面
 
-通过这个介绍，你可以了解到 Docker 是什么，以及它是如何工作的。在本章节中，我们将 Docker 集成到你的环境中，并且通过使用 Docker 来了解一些基础知识。
+在[介绍](../README.md)中，您已经对什么是 Docker，它是如何工作的有了或多或少的了解。在本指南中，我们要向您讲解使用 Docker 的基础知识，并将 Docker 整合到您的环境中去。
 
-我们教你如何使用docker:
+我们会教您如何使用 Docker：
+- Docker 化您的应用程序。
+- 运行 Docker。
+- 构建 Docker 镜像。
+- 与其他人分享您的 Docker 镜像。
+- 更多内容。
 
-- docker中运行你的应用程序。
-- 运行你自己的容器。
-- 创建docker镜像。
-- 分享你的docker镜像。
-- 和更多的信息!
+我们将本指南划分成了几个重要的章节，这样可以让您更深刻的了解 Docker 的生命周期：
 
-我们已经将本指南分为几个主要部分：
+## 从 Docker Hub 开始
+*我应该如何使用 Docker Hub 呢？*
 
-###开始使用Docker Hub
+Docker Hub 是 Docker 的中央枢纽。它掌管了公共的 Docker 镜像，并提供可以协助您构建并管理 Docker 环境的服务。想了解更多？
+请您跳转到 [使用 Docker Hub](../docker-hub/docker-hub.md)
 
-如何使用Docker Hub?
+## Docker 化应用程序：“Hello world”
+*我应该如何运行容器中的应用程序呢？*
+Docker 为运行您的应用程序，从而提供了一个基于容器的虚拟化平台。想要学习如何 Dockerize 应用程序并运行它们？
 
-Docker Hub是docker的中心仓库。Docker Hub里存储了公共的 Docker 镜像，并且提供服务来帮助你构建和管理你的 Docker 环境。了解解更多。
+请见：[Docker 化应用程序](../userguide/dockerizing.md)
 
-阅读使用[Docker Hub](dockerhub.md).
+## 使用 容器
+*我应该如何管理我的容器呢？*
 
-###在Docker中运行“hello Word”应用
+一旦您熟悉了在 Docker 容器中运行您的应用程序，您可能就想知道如何管理这些容器了。想知道如何查看，监测并管理容器吗？
 
-如何在容器内运行应用程序？
+请见：[使用容器](../userguide/usingdocker.md)
 
-Docker 为你将要运行的应用程序提供了一个基于容器的虚拟化平台。学习如何使用 `Dockerize` 应用程序来运行他们。
+## 使用 Docker 镜像
+*我应该如何访问，分享并构建我自己的镜像呢？*
+一旦您学会了如何使用 Docker，那么接下来您就应该去了解如何利用 Docker 构建您自己的应用程序镜像了。
 
-阅读[Dockerize应用程序](dockerizing.md)
+请见：[使用 Docker 镜像](../userguide/dockerimages.md)
 
-###使用容器
+## 将容器联系在一起
+到目前为止，我们已经知道了如何在 Docker 容器中构建自己的应用程序。现在我们需要学习如何通过将多个 Docker 容器连结到一起从而构建出整个应用程序栈出来。
 
-如何管理我们的容器？
+请见：[将 Docker 容器联系到一起](../userguide/dockervolumes.md)
 
-当你在docker容器中运行和管理你的应用程序，我们会展示如何管理这些容器。了解如何检查、监控和管理容器。
+## 管理容器中的数据
+现在我们知道了如何将 Docker 容器连结到一起，下面我们要学习如何在我们的容器中管理数据，卷和挂载的文件系统。
 
-阅读[使用容器](usingdocker.md)
+请见：[管理 Container 中的数据](../userguide/dockervolumes.md)
 
-###使用docker镜像
+## 使用 Docker Hub
+现在我们已经了解了如何使用 Docker，下面我们将要了解如何将 Docker 与 Docker Hub 上的服务（包括受信任的编译版本和私有仓库）结合起来。
 
-我是如何创建、访问和分享我自己的容器呢？
+请见：[使用 Docker Hub](../userguide/dockerrepos.md)
 
-当你学会如何使用docker的时候，是时候进行下一步来学习如何在 Docker 中构建你自己应用程序镜像。
+## Docker Compose
+Docker Compose 允许您在一个单独的文件中定义应用程序的组建（包括应用程序的容器配置，链接和卷）。然后通过一个单独的命令开启所有的服务并将您的应用程序运行起来。
 
-阅读[使用docker镜像](dockerimages.md)
+请见：[Docker Compose 用户指南](../compose/compose.md)
 
-###容器连接
+## Docker Machine
+Docker Machine 能帮您启动 Docker Engine，并使之快速运行起来。Docker Machine 能在您的机器上，云供应商提供的云主机中或您的数据中心里为 Docker Engine 设置主机，为了能让 Docker 主机和您的机器进行安全的交互，Docker Machine 还会帮您配置 Docker client。 
 
-到这里我们学会了如何在 Docker 容器中构建一个单独的应用程序。而现在我们要学习如何将多个容器连接在一起构建一个完整的应用程序。
+请见：[Docker Machine 用户指南](../compose/compose.md)
 
-阅读[容器连接](dockerlinks.md)
+## Docker Swarm
+Docker Swarm 将很多 Docker Engine 汇聚到一起，将其定义为一个单独的虚拟 Docker Engine。它提供了标准的 Docker API，所以任何与 Docker 协同执行的工具现在都可以显式的扩展到多个 Docker 主机上。
 
-###管理容器数据
+请见：[Docker Swarm 用户指南](../userguide/swarm.md)
 
-现在我们知道如何连接 Docker 容器，下一步，我们学习如何管理容器数据，如何将卷挂载到我们的容器中。
-
-阅读[管理容器数据](dockervolumes.md)
-
-###使用Docker Hub
-
-现在我们应该学习更多关于使用 Docker 的知识。例如通过 Docker Hub 提供的服务来构建私有仓库。
-
-阅读[使用Docker Hub](dockerrepos.md)
-
-###Docker Compose
-
-Docker Compose 你只需要一个简单的配置文件就可以自定义你所需要的应用组件，包括容器、配置、网络链接和挂载卷。只需要一个简单的命令就可以启动和运行你的应用程序。
-
-阅读[Docker Compose 用户指南.](../compose/README.md)
-
-###Docker Machine
-
-Docker Machine 可以帮助你快速的启动和运行 Docker 引擎。 Machine 可以帮助你配置本地电脑、云服务商和你的个人数据中心上的 Docker 引擎主机，并且通过配置 Docker 客户端来让它们进行安全的通信。
-
-查阅 [Go to Docker Machine user guide.](../machine/README.md)
-
-###Docker 集群
-
-Docker 集群是将多个 Docker 引擎池连接在一起组合成一个独立的主机来提供给外界。它是以 Docker API 作为服务标准的，所以任何已经在Docker上工作的工具，现在都可以透明地扩展到多个主机上。
-
-阅读 [Go to Docker Swarm user guide.](../swarm/)
+## 获取帮助

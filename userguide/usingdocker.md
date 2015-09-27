@@ -8,49 +8,63 @@
 
 在这个过程中，我们学习到了几个 Docker 命令：
 
-- `docker ps`   列出容器。
-- `docker logs` 显示容器的标准输出
-- `docker stop` 停止正在运行的容器
+* `docker ps`   列出容器。
+* `docker logs` 显示容器的标准输出
+* `docker stop` 停止正在运行的容器
 
->提示：另一种学习 `docker` 命令的方式就是查看我们的 [交互式教程页面。](https://www.docker.com/tryit/)
+> **提示**：另一种学习 `docker` 命令的方式就是查看我们的[交互式教程页面](../linux/started.md)。
 
 `docker` 客户端非常简单 。Docker 的每一项操作都是通过命令行来实现的，而每一条命令行都可以使用一系列的标识（flags）和参数。
+```
+# 使用方法：[sudo] docker [command] [flags] [arguments] ..
+# 示例：
+$ docker run -i -t ubuntu /bin/bash
+```
 
-	# Usage:  [sudo] docker [flags] [command] [arguments] ..
-	# Example:
-	$ docker run -i -t ubuntu /bin/bash
+让我们看看运行可以返回已安装的 Docker 客户端和后台程序版本信息的 `docker version` 命令具体都做了什么操作？
+```
+$ sudo docker version
+```
 
-让我们看看这个使用 `docker version` 命令的操作，它将返回当前安装的 Docker 客户端和进程的版本信息。
+这个命令不仅为您提供您正在使用的 Docker 客户端和后台程序的版本信息，还返回了 GO 语言的版本信息（Docker 的编程语言）。
+```
+Client:
+  Version:      1.8.1
+  API version:  1.20
+  Go version:   go1.4.2
+  Git commit:   d12ea79
+  Built:        Thu Aug 13 02:35:49 UTC 2015
+  OS/Arch:      linux/amd64
 
-	$ sudo docker version
+Server:
+  Version:      1.8.1
+  API version:  1.20
+  Go version:   go1.4.2
+  Git commit:   d12ea79
+  Built:        Thu Aug 13 02:35:49 UTC 2015
+  OS/Arch:      linux/amd64
+```
 
-这个命令不仅返回了您使用的 Docker 客户端和进程的版本信息，还返回了 GO 语言的版本信息( Docker的编程语言 )。
+## 获取 Docker 命令的帮助信息
 
-	Client version: 0.8.0
-	Go version (client): go1.2
-	
-	Git commit (client): cc3a8c8
-	Server version: 0.8.0
-	
-	Git commit (server): cc3a8c8
-	Go version (server): go1.2
-	
-	Last stable version: 0.8.0
+您可以列出具体的 Docker 命令的帮助信息。帮助信息详细的描述了该命令的选项和使用方法。想要看到所有命令的列表，请使用下面的命令：
+```
+$ docker *--help*
+```
 
-## 查看一下 Docker 客户端都能做什么
+想看到具体命令的使用方法，请指定具体的命令再加上 `--help` 标示。
+```
+$ docker attach --help
 
-我们可以通过只输入不附加任何参数的 `docker` 命令来运行 docker 二进制文件，这样我们就会查看到 Docker 客户端的所有命令选项。
+Usage: docker attach [OPTIONS] CONTAINER
 
-	$ sudo docker
+Attach to a running container
 
-会看到当前可用的所有命令行列表：
-
-	Commands:
-     attach    Attach to a running container
-     build     Build an image from a Dockerfile
-     commit    Create a new image from a container's changes
-	 . . .
-
+  --help=false        Print usage
+  --no-stdin=false    Do not attach stdin
+  --sig-proxy=true    Proxy all received signals to the process
+```
+ 
 ## 查看 Docker 命令用法
 
 你可以更深入的去了解指定的 Docker 命令使用方法。
