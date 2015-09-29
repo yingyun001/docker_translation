@@ -49,10 +49,10 @@ Server:
 
 您可以列出具体的 Docker 命令的帮助信息。帮助信息详细的描述了该命令的选项和使用方法。想要看到所有命令的列表，请使用下面的命令：
 ```
-$ docker *--help*
+$ docker --help
 ```
 
-想看到具体命令的使用方法，请指定具体的命令再加上 `--help` 标示。
+想看到具体命令的使用方法，请在指定具体的命令之后再加上 `--help` 标示。
 ```
 $ docker attach --help
 
@@ -64,194 +64,184 @@ Attach to a running container
   --no-stdin=false    Do not attach stdin
   --sig-proxy=true    Proxy all received signals to the process
 ```
- 
-## 查看 Docker 命令用法
 
-你可以更深入的去了解指定的 Docker 命令使用方法。
+> **注意：**
+> 想要获取更多具体的命令的细节和实例，请访问本指南的[命令参照](../reference/commandline/cli.md)
 
-试着输入 Docker `[command]`，这里会看到 docker 命令的使用方法：
+## 在 Docker 中运行一个 web 应用程序
 
-	$ sudo docker attach
-	Help output . . .
+到现在为止，我们已经了解了很多关于 `docker` 客户端的知识，现在让我们将目光转移到重要的部分：运行多个容器。到目前为止我们运行的容器并没有做什么特别有用的事情，我们可以通过在 Docker 中运行一个 web 应用程序的示例来改变“现状”。
 
-或者你可以通过在 docker 命令中使用 `--help` 标识(flags)
+为了运行我们的 web 应用程序，我们还需要运行 Python Flask 应用程序。让我们从 `docker run` 命令开始。
+```
+$ docker run -d -P training/webapp python app.py
+```
 
-	$ sudo docker images --help
+让我们看一下我们的命令都做了什么。我们指定了两个标识(flags)：`-d` 和 `-P`。我们已经了解了 `-d` 标识，它的作用是告诉 Docker 容器要在后台运行容器。`-P` 标识是我们新认识的，它会告诉 Docker 将容器内任意一个必需的网络端口映射到我们的主机上。让我们看看我们的 web 应用程序吧。
 
-这将返回所有的帮助信息和可用的标识(flags)：
+我们指定了 `training/web` 镜像。该镜像是我们创建的预先构建好的镜像，它包含了一个简单的 Python Flask web 应用程序。
 
-	Usage: docker attach [OPTIONS] CONTAINER
+最后，我们为我们的容器指定要运行的命令：`python app.py`。这样我们的 web 应用就启动了。
 
-	Attach to a running container
-	
-	  --no-stdin=false: Do not attach stdin
-	  --sig-proxy=true: Proxify all received signal to the process (even in non-tty mode)
+> **注意**：您可以在[命令参考](../reference/commandline/cli.md/#run)和 [Docker Run 参考](../reference/run.md)中查看到更多关于 `docker run` 命令的详细信息。
 
->注意：你可以点击[这里](https://docs.docker.com/reference/commandline/cli/) 来查看完整的 Docker 命令行列表和使用方法。
+## 查看我们 web 应用程序的容器
 
-## 在Docker中运行一个web应用
+现在让我们使用 `docker ps` 命令来查看我们正在运行的容器。
+```
+$ sudo docker ps -l
+CONTAINER ID  IMAGE                   COMMAND       CREATED        STATUS        PORTS                    NAMES
+bc533791f3f5  training/webapp:latest  python app.py 5 seconds ago  Up 2 seconds  0.0.0.0:49155->5000/tcp  nostalgic_morse
+```
 
-到这里我们了解了更多关于 docker 客户端的知识，而现在我们需要将学习的焦点转移到重要的部分：运行多个容器。到目前为止我们发现运行的容器并没有一些什么特别的用处。让我们通过使用 docker 构建一个 web 应用程序来运行一个web应用程序来体验一下。
+您可以看到我们为 `docker ps` 命令指定了新的标识 `-l`。它会告知 `docker ps` 命令返回最后一个被启动的容器的详细信息。
 
-在这个 web 应用中，我们将运行一个 Python Flask 应用。使用 `docker run` 命令。
+> **注意**：默认情况下，`docker ps` 命令只显示运行着的容器的信息。如果您还想看到已经停止的容器，请加上 `-a` 标识。
 
-	$ sudo docker run -d -P training/webapp python app.py
+我们这里可以看到一些详细信息，不仅有与[我们 Docker 化的第一个容器](dockerizing.md)相同的信息还多了一个重要的 `PORTS` 列。
+```
+PORTS
+0.0.0.0:49155->5000/tcp
+```
 
-让我们来回顾一下我们的命令都做了什么。我们指定两个标识(flags)   `-d` 和 `-P` 。我们已知是 `-d` 标识是让 docker 容器在后台运行。新的 `-P` 标识通知 Docker 将容器内部使用的网络端口映射到我们使用的主机上。现在让我们看看我们的 web 应用。
+如果我们为 `docker run` 命令添加 `-P` 标识，那么 Docker 会将我们镜像中开放的端口映射到我们的主机上。
 
-This image is a pre-built image we've created that contains a simple Python Flask web application.
+> **提示**：当我们学习[如何构建镜像的时候](dockerimages.md)，我们将了解更多关于如何开放 Docker 镜像端口。
 
-我们指定了 `training/web` 镜像。我们创建容器的时候使用的是这个预先构建好的镜像，并且这个镜像已经包含了简单的 Python Flask web 应用程序。
+在本例中，Docker 将 5000 端口（默认的 Python Flask 端口）暴露在主机的 49155 端口上。
 
-最后，我们指定了我们容器要运行的命令： `python app.py`。这样我们的 web 应用就启动了。
+在 Docker 中网络端口绑定是非常容易配置的。在最后一个示例中，`-P` 标识是 `-p 5000` 的简写形式，它将会将容器内部的 5000 端口映射到本地 Docker 主机的临时端口范围（通常范围是 32768 至 61000)中的一个高位端口上。我们也可以使用 `-p` 标识来将 Docker 容器绑定到一个特定端口上。举例：
+```
+$ docker run -d -p 80:5000 training/webapp python app.py
+```
 
->注意：你可以在[命令参考](http://docs.docker.com/reference/commandline/cli/#run)和[Docker run参考](http://docs.docker.com/reference/run/)查看更多 `docker run` 命令细节
+这个做会将我们容器内的 5000 端口映射到我们本地主机的 5000 端口上。你现在可能会问：为什么我们不能使用与 Docker 容器中的端口相同的端口，而是要映射到高位端口的方式呢？1:1 的映射方式不允许 Docker 端口与本地主机的端口相一致。我们假设您想测试两个 Python 应用程序，两个容器内都绑定了 5000 端口，如果没有 Docker 的端口映射规则，您在 Docker 主机上一次只能访问其中一个应用程序。
 
-## 查看 WEB 应用容器
-
-现在我们使用 `docker ps` 来查看我们正在运行的容器。
-
-	$ sudo docker ps -l
-	CONTAINER ID  IMAGE                   COMMAND       CREATED        STATUS        PORTS                    NAMES
-	bc533791f3f5  training/webapp:latest  python app.py 5 seconds ago  Up 2 seconds  0.0.0.0:49155->5000/tcp  nostalgic_morse
-
-你可以看到我们在 `docker ps` 命令中指定了新的标识 `-l`。这样组合的 `docker ps` 命令会返回最后启动容器的详细信息。
-
->注意：默认情况下，`docker ps` 命令只显示运行中的容器。如果你还想看已经停止的容器，请加上 `-a` 标示。
-
-
-我们这里可以看到一些细节，与我们第一次运行 `docker ps` 命令的时候相比，这里多了一个 `PORTS` 列。
-
-	PORTS
-	0.0.0.0:49155->5000/tcp
-
-我们通过在 `docker run` 中使用 `-P` 标示(flags) 来将我们 Docker 镜像内部容器端口暴露给主机。
-
->提示：当我们学习[如何构建镜像的时候](./dockerimages.md)，我们将了解更多关于如何开放 Docker 镜像端口。
-
-在这种情况下，Docker 开放了 5000 端口（默认 Python Flask 端口）映射到主机端口 49155 上。
-
-Docker 能够很容易的配置和绑定网络端口。在最后一个例子中 `-P` 标识(flags)是 `-p 5000` 的缩写，它将会把容器内部的 5000 端口映射到本地 Docker 主机的高位端口上(这个端口的通常范围是 32768 至 61000)。我们也可以指定 `-p` 标识来绑定指定端口。举例：
-
-	$ sudo docker run -d -p 5000:5000 training/webapp python app.py
-
-
-这将会把容器内部的 5000 端口映射到我们本地主机的 5000 端口上。你可能现在会问：为什么我们只使用 1对1端口映射的方式将端口映射到 Docker 容器， 而不是采用自动映射高位端口的方式？这里 1:1 映射方式能够保证映射到本地主机端口的唯一性。假设你想要测试两个 Python 应用程序，两个容器内部都绑定了端口5000，这样就没有足够的 Docker 的端口映射，你只能访问其中一个。
-
-所以，现在我们打开浏览器访问端口49155。
+所以，现在我们打开网页浏览器访问端口 49155，来观察该应用程序。
 
 ![应用访问](../images/webapp1.png)
 
-我们的应用程序可以访问了！
+我们的 Python 应用程序可以访问了！
 
->注意：如果你在 OS X windows或者Linux上使用 boot2docker 虚拟机，你需要获取虚拟机的 ip 来代替localhost 使用，你可以通过运行 boot2docker shell 来获取 ip。
+> **注意**：
+> 如果您在 OS X，windows 或 Linux 上使用了 boot2docker 虚拟机，你需要获取该虚拟机的 ip 来进行访问，而不是继续使用 localhost，您可以通过在 `boot2docker` 之外的 shell（例如，您的命令行下或终端应用程序下）运行下面的命令来获取 ip。
+```
+$ boot2docker ip
+The VM's Host only interface IP address is: 192.168.59.103
+```
 
-	$ boot2docker ip
-	The VM's Host only interface IP address is: 192.168.59.103
+在该例子中，您可以访问 http://192.168.59.103:49155 看到上面例子的结果。
 
->在这种情况下,你可以通过输入 http://192.168.59.103:49155 来访问上面的例子。
+### 网络端口快捷方式
 
-### 查看网络端口快捷方式
+使用 `docker ps` 命令来查看被映射的端口是一种比较笨拙的方式。为此，Docker 提供了一种快捷方式，我们可以使用：`docker port`。为了使用 `docker port`，我们还需指定容器的 ID 或名称还有与开放端口进行映射的那个端口。
+```
+$ sudo docker port nostalgic_morse 5000
+0.0.0.0:49155
+```
 
-使用 `docker ps` 命令来会返回端口的映射是一种比较笨拙的方法。为此，Docker 提供了一种快捷方式： `docker port` ，使用 `docker port` 可以查看指定 （ID或者名字的）容器的某个确定端口映射到宿主机的端口号。
+本例中，我们查看到了容器中的 5000 端口确实映射到了宿主机的 49155 端口。
 
-	$ sudo docker port nostalgic_morse 5000
-	0.0.0.0:49155
+### 查看Web 应用程序的日志
 
+让我们看看我们的应用程序中都发生了什么，这里我们要使用学习到的另外一个命令 `docker logs`。
+```
+$ docker logs -f nostalgic_morse
+* Running on http://0.0.0.0:5000/
+10.0.2.2 - - [23/May/2014 20:16:31] "GET / HTTP/1.1" 200 -
+10.0.2.2 - - [23/May/2014 20:16:31] "GET /favicon.ico HTTP/1.1" 404 -
+```
 
-在这种情况下，我们看到容器的 5000 端口映射到了宿主机的的 49155 端口。
+这次我们添加了一个新的 `-f` 标识。`docker logs` 命令看起来很像 `tail -f` 命令，我们还能看到容器的标准输出。我们可以从显示屏上可以看到日志信息，它列出了运行在 5000 端口上的应用程序和你访问日志记录。
 
+### 查看Web 应用程序容器的进程
 
-###查看WEB应用程序日志
+我们除了可以查看容器日志，同时我们还可以使用 `docker top` 命令来检测运行在容器内部的进程：
+```
+$ sudo docker top nostalgic_morse
+PID                 USER                COMMAND
+854                 root                python app.py
+```
 
-让我们看看我们的容器中的应用程序都发生了什么，这里我们使用学习到的另一个命令 `docker logs` 来查看。
+这里我们可以看到我们的 `python app.py` 命令是容器中运行的唯一一个进程。
 
-	$ sudo docker logs -f nostalgic_morse
-	* Running on http://0.0.0.0:5000/
-	10.0.2.2 - - [23/May/2014 20:16:31] "GET / HTTP/1.1" 200 -
-	10.0.2.2 - - [23/May/2014 20:16:31] "GET /favicon.ico HTTP/1.1" 404 -
+### 检查我们的 web 应用程序
 
-这次我们添加了一个 `-f` 标识。 `docker log` 命令就像使用 `tail -f` 一样来输出容器内部的标准输出。这里我们从显示屏上可以看到应用程序使用的是 5000 端口并且能够查看到应用程序的访问日志。
-
-### 查看WEB应用程序容器的进程
-
-我们除了可以查看容器日志，我们还可以使用 `docker top` 来查看容器内部运行的进程：
-
-	$ sudo docker top nostalgic_morse
-	PID                 USER                COMMAND
-	854                 root                python app.py
-
-这里我们可以看到 `python app.py` 在容器里唯一进程。
-
-###检查WEB应用程序
-
-最后，我们可以使用 `docker inspect ` 来查看Docker的底层信息。它会返回一个 JSON 文件记录着 Docker 容器的配置和状态信息。
-
-	$ sudo docker inspect nostalgic_morse
+最后，我们可以使用 `docker inspect ` 命令来查看 Docker 的底层信息。它会为具体指定的容器返回一个 JSON 文件，其中记录了非常有用的配置信息和状态信息。
+```
+$ docker inspect nostalgic_morse
+```
 
 来让我们看下JSON的输出。
+```
+[{
+    "ID": "bc533791f3f500b280a9626688bc79e342e3ea0d528efe3a86a51ecb28ea20",
+    "Created": "2014-05-26T05:52:40.808952951Z",
+    "Path": "python",
+    "Args": [
+       "app.py"
+    ],
+    "Config": {
+       "Hostname": "bc533791f3f5",
+       "Domainname": "",
+       "User": "",
+. . .
+```
 
-	[{
-	    "ID": "bc533791f3f500b280a9626688bc79e342e3ea0d528efe3a86a51ecb28ea20",
-	    "Created": "2014-05-26T05:52:40.808952951Z",
-	    "Path": "python",
-	    "Args": [
-	       "app.py"
-	    ],
-	    "Config": {
-	       "Hostname": "bc533791f3f5",
-	       "Domainname": "",
-	       "User": "",
-	. . .
+我们还可以通过给出具体的元素提炼出我们想要的信息，例如返回容器的 IP 地址：
+```
+$ docker inspect -f '{{ .NetworkSettings.IPAddress }}' nostalgic_morse
+172.17.0.5
+```
 
-我们也可以针对我们想要的信息进行过滤，例如，返回容器的 IP 地址，如下：
+### 停止我们的 web 应用程序所在的容器
 
-	$ sudo docker inspect -f '{{ .NetworkSettings.IPAddress }}' nostalgic_morse
-	172.17.0.5
+现在，我们已经看到 `web` 应用程序开始工作了。现在让我们使用 `docker stop` 命令来停止 `nostalgic_morse` 的容器。
+```
+$ docker stop nostalgic_morse
+nostalgic_morse
+```
 
-###停止WEB应用容器
+现在我们可以使用 `docker ps` 命令来检查容器是否已经停止了。
+```
+$ sudo docker ps -l
+```
 
-现在，我们的WEB应用程序处于工作状态。现在我们通过使用 `docker stop` 命令来停止名为 `nostalgic_morse` 的容器：
+### 重启 web 我们应用程序所在的容器
 
-	$ sudo docker stop nostalgic_morse
-	nostalgic_morse
+哎呀！刚刚就在您停止了那个容器时，您得到了有另一个开发人员需要该容器的通知。这里您有两个选择：您可以创建一个新的容器或者重新启动刚刚被您关上的那个。让我们看看如何将之前的那个容器重新启动。
+```
+$ docker start nostalgic_morse
+nostalgic_morse
+```
 
-现在我们使用 `docker ps` 命令来检查容器是否停止了。
+现在赶紧再次运行 `docker ps -l` 来查看正在运行的容器是否已经恢复回来，或者通过访问 URL 来查看我们的应用程序是否有响应。
 
-	$ sudo docker ps -l
+> **注意**：也可以使用 `docker restart` 命令来停止容器然后再启动容器。
 
-###重启WEB应用容器
+### 移除 web 应用程序所在的容器
 
-哎呀！刚才你停止了另一个开发人员所使用的容器。这里你现在有两个选择：您可以创建一个新的容器或者重新启动旧的。让我们启动我们之前的容器：
+您的同事告诉您他们已经完成了在容器上的工作，不再需要该容器了。那么我们可以使用 `docker rm` 命令来删除它：
+```
+$ docker rm nostalgic_morse
+Error: Impossible to remove a running container, please stop it first or use -f
+2014/05/24 08:12:56 Error: failed to remove one or more containers
+```
 
-	$ sudo docker start nostalgic_morse
-	nostalgic_morse
+发生了什么？实际上，我们不能删除正在运行的容器。这避免您意外删除了一个运行着的以后可能还会继续使用的容器。让我们先关闭容器，然后再试试删除命令。
+```
+$ sudo docker stop nostalgic_morse
+nostalgic_morse
+$ sudo docker rm nostalgic_morse
+nostalgic_morse
+```
 
-现在再次运行 `docker ps -l` 来查看正在运行的容器，或者通过URL访问来查看我们的应用程序是否响应。
+现在我们已经关闭并删除了该容器。
 
->注意：也可以使用 `docker restart` 命令来停止容器然后再启动容器。
+> **注意**：删除容器是最后一步！
 
-###移除WEB应用容器
+### 下一步
 
-你的同事告诉你他们已经完成了在容器上的工作，不在需要容器了。让我们使用 `docker rm` 命令来删除它：
-
-	$ sudo docker rm nostalgic_morse
-	Error: Impossible to remove a running container, please stop it first or use -f
-	2014/05/24 08:12:56 Error: failed to remove one or more containers
-
-发生了什么？实际上，我们不能删除正在运行的容器。这避免你意外删除了正在使用并且运行中的容器。让我们先停止容器，然后再试一试删除容器。
-
-	$ sudo docker stop nostalgic_morse
-	nostalgic_morse
-	$ sudo docker rm nostalgic_morse
-	nostalgic_morse
-
-现在我们停止并删除了容器。
-
->注意：删除容器是最后一步！
-
-###下一步
-
-直到现在，我们使用的镜像都是从Docker Hub下载的。接下来，我们学习创建和分享镜像。
+直到现在，我们使用的镜像都是从 [Docker Hub]（https://hub.docker.com/) 上下载下来的。接下来，我们将会学习构建并分享属于自己的镜像。
 
 阅读[使用镜像](dockerimages.md)
