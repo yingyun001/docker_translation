@@ -1,5 +1,4 @@
-使用Docker Hub
-===
+# 使用Docker Hub
 
 现在你已经学习了如何利用命令行在本地运行Docker，还学习了如何[拉取镜像](usingdocker.md)用于从现成的镜像中构建容器，并且还学习了如何[创建自己的镜像](dockerimages.md)。
 
