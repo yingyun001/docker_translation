@@ -193,7 +193,7 @@ $ touch Dockerfile
 
 如果您是在 Windows 上使用的 Docker Machine，那么您可以通过使用 `cd` 命令来访问您的主机目录 `/c/Users/your_user_name`。
 
-每一条指令都会在镜像上创建一个新的层。现在让我们来看一个为开发团队构建自己的 Sinatra 镜像的例子，我们的开发团建来构建一个自己的 `Sinatra `镜像：
+每一条指令都会在镜像上创建一个新的层。现在让我们来看一个为我们的开发团队构建自己的 Sinatra 镜像的例子：
 ```
 # This is a comment
 FROM ubuntu:14.04
