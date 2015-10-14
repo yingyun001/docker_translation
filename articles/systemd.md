@@ -21,7 +21,7 @@ $ sudo chkconfig docker on
 
 我们推荐的方式是使用 systemd 的 drop-in 文件，就是那些在 `/etc/systemd/system/docker.service.d` 目录中的本地文件，还可以是 `/etc/systemd/system/docker.service` 目录中的文件，这个文件还用于重写 `/lib/systemd/system/docker.service` 文件中的默认值。
 
-但是，如果您之前出于向后兼容的考虑，使用了一个具有 `EnvironmentFile` 文件(通常指的是 `/etc/sysconfig/docker` 文件）的包，那么您应该在 `/etc/systemd/system/docker.service.d` 目录下创建具有以下内容的文件。
+但是，如果您之前使用了一个使用 `EnvironmentFile` 配置属性(该属性值通常指向 `/etc/sysconfig/docker` 文件）的包，那么出于向后兼容的考虑，您应该在 `/etc/systemd/system/docker.service.d` 目录下创建具有以下内容的文件。
 ```
 [Service]
 EnvironmentFile=-/etc/sysconfig/docker
@@ -35,7 +35,7 @@ ExecStart=/usr/bin/docker -d -H fd:// $OPTIONS \
           $INSECURE_REGISTRY
 ```
 
-为了检查 `docker.service` 是否使用了一个 `EnvironmentFile`：
+为了检查 `docker.service` 是否使用了一个 `EnvironmentFile` 配置属性：
 ```
 $ sudo systemctl show docker | grep EnvironmentFile
 EnvironmentFile = -/etc/sysconfig/docker（ignore_errors=yes）
@@ -118,4 +118,4 @@ $ sudo systemctl restart docker
 ```
 
 ### 手动创建 systemd 单元文件
-当您在不使用包的情况下来安装儿进制文件，您可能想将 Docker 和 systemd 整合起来。为了实现它们的整合，请您在 `/etc/systemd/system` 目录中添加两个单元文件（service 和 socket），您可以在 [github 仓库](https://github.com/docker/docker/tree/master/contrib/init/systemd)中找到。
+当您在不使用包的情况下来安装二进制文件，您可能想将 Docker 和 systemd 整合起来。为了实现它们的整合，请您在 `/etc/systemd/system` 目录中添加两个单元文件（service 和 socket），您可以在 [github 仓库](https://github.com/docker/docker/tree/master/contrib/init/systemd)中找到。
