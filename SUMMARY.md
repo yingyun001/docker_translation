@@ -21,7 +21,7 @@
          * [在 Gentoo 上安装](installation/gentoo.md)
          * [在 Oracle Linux 上安装](installation/oracle.md)
          * [在 Red Hat Enterprise Linux 上安装](installation/redhat.md)
-         * [在 Ubuntu 上安装](installation/ubuntu.md)
+         * [在 Ubuntu 上安装](installation/ubuntulinux.md)
          * [在 openSUSE 和 SUSE Linux 上安装](installation/opensuse.md)
       * [Cloud](#)
          * [Amazon EC2 Installation](installation/amazon.md)
